@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:o/ui/overlay/overlay.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,7 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'O',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -18,9 +20,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter O'),
     );
   }
 }
@@ -43,18 +45,21 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  final tabs = ['Start', 'Target', 'Plan', 'Insist', 'Success'];
+  TabController _tabController;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: tabs.length);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -89,23 +94,219 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            _buildTabBar(),
+            Container(
+                color: Colors.white,
+                width: MediaQuery.of(context).size.width,
+                height: 300,
+                child: _buildTableBarView())
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      drawer:
+          Drawer(), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  Widget _buildTabBar() => TabBar(
+        onTap: (tab) => print(tab),
+        labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        unselectedLabelStyle: TextStyle(fontSize: 16),
+        isScrollable: true,
+        controller: _tabController,
+        labelColor: Colors.green,
+        indicatorWeight: 3,
+        indicatorPadding: EdgeInsets.symmetric(horizontal: 10),
+        unselectedLabelColor: Colors.black,
+        indicatorColor: Colors.teal,
+        tabs: tabs.map((e) => Tab(text: e)).toList(),
+      );
+
+  Widget _buildTableBarView() => TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          _buildFirstTableBarView(),
+          Container(
+              alignment: Alignment.center,
+              child: Text(
+                'O2',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              )),
+          Container(
+              alignment: Alignment.center,
+              child: Text(
+                'O3',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              )),
+          Container(
+              alignment: Alignment.center,
+              child: Text(
+                'O4',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              )),
+          Container(
+              alignment: Alignment.center,
+              child: Text(
+                'O5',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              )),
+        ],
+      );
+
+  Widget _buildFirstTableBarView() => ListView(
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return CustomOverlay();
+                },
+              ),);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[500],
+              child: Text(
+                'Overlay',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[400],
+              child: Text(
+                'Item 1',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[500],
+              child: Text(
+                'Item 2',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[400],
+              child: Text(
+                'Item 3',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[500],
+              child: Text(
+                'Item 4',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[400],
+              child: Text(
+                'Item 5',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[500],
+              child: Text(
+                'Item 6',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: Container(
+              alignment: Alignment.center,
+              width: 100,
+              height: 80,
+              color: Colors.purple[400],
+              child: Text(
+                'Item 7',
+                style: TextStyle(color: Colors.white, shadows: [
+                  Shadow(
+                      color: Colors.black,
+                      offset: Offset(.5, .5),
+                      blurRadius: 2)
+                ]),
+              ),
+            ),
+          ),
+        ],
+      );
 }
