@@ -131,8 +131,8 @@ class _MyHomePageState extends State<MyHomePage>
           Container(
               alignment: Alignment.center,
               child: Text(
-                'O2',
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                'TabBarView 2',
+                style: TextStyle(color: Colors.lightGreen, fontSize: 18),
               )),
           Container(
               alignment: Alignment.center,
@@ -169,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[500],
+              color: Colors.green[500],
               child: Text(
                 'Overlay',
                 style: TextStyle(color: Colors.white, shadows: [
@@ -187,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[400],
+              color: Colors.green[400],
               child: Text(
                 'Item 1',
                 style: TextStyle(color: Colors.white, shadows: [
@@ -205,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[500],
+              color: Colors.green[500],
               child: Text(
                 'Item 2',
                 style: TextStyle(color: Colors.white, shadows: [
@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[400],
+              color: Colors.green[400],
               child: Text(
                 'Item 3',
                 style: TextStyle(color: Colors.white, shadows: [
@@ -241,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[500],
+              color: Colors.green[500],
               child: Text(
                 'Item 4',
                 style: TextStyle(color: Colors.white, shadows: [
@@ -259,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[400],
+              color: Colors.green[400],
               child: Text(
                 'Item 5',
                 style: TextStyle(color: Colors.white, shadows: [
@@ -277,7 +277,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[500],
+              color: Colors.green[500],
               child: Text(
                 'Item 6',
                 style: TextStyle(color: Colors.white, shadows: [
@@ -295,7 +295,7 @@ class _MyHomePageState extends State<MyHomePage>
               alignment: Alignment.center,
               width: 100,
               height: 80,
-              color: Colors.purple[400],
+              color: Colors.green[400],
               child: Text(
                 'Item 7',
                 style: TextStyle(color: Colors.white, shadows: [
